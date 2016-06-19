@@ -302,7 +302,7 @@
       Roughly speaking, the <code class="code">prototype</code> is the list of all functions of the object. Here we have the <code class="code">_init</code> function and the <code class="code">on_applet_clicked</code> function, which is all we need.
     </p>
 <p>
-      Here we see what I've refered to as the "applet API" all the time. A few barebone applet objects are defined in <code class="code">applet.js</code>, and we inherit one of them. Here we choose to inherit <code class="code">Applet.IconApplet</code>, which is an applet that displays an icon.
+      Here we see what I've referred to as the "applet API" all the time. A few barebone applet objects are defined in <code class="code">applet.js</code>, and we inherit one of them. Here we choose to inherit <code class="code">Applet.IconApplet</code>, which is an applet that displays an icon.
     </p>
 <p>
       Inheritance in JavaScript is slightly weird. We first copy over <code class="code">Applet.IconApplet</code>'s prototype using the
@@ -325,7 +325,7 @@
       Next, in our <code class="code">_init</code> function, we call the <code class="code">_init</code> function of <code class="code">Applet.IconApplet</code>. Here we pass on all those information about <code class="code">orientation</code> etc to this <code class="code">_init</code> function, and this function will help us sort out all the mess required to make the applet display properly.
     </p>
 <p>
-      However, contrary to popular belief, the applet API is not psychic. It has no idea what your applet wants to do (appart from displaying an icon). You hvae to first tell it what icon you want, in the line
+      However, contrary to popular belief, the applet API is not psychic. It has no idea what your applet wants to do (apart from displaying an icon). You have to first tell it what icon you want, in the line
     </p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
