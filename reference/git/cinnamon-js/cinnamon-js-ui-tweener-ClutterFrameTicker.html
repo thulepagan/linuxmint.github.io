@@ -42,7 +42,7 @@
 <div class="refsect1">
 <a name="cinnamon-js-ui-tweener-ClutterFrameTicker.description"></a><h2>Description</h2>
 <p>The 'FrameTicker' object is an object used to feed new frames to Tweener so it can update values and redraw. The default frame ticker for Tweener just uses a simple timeout at a fixed frame rate and has no idea of "catching up" by dropping frames.</p>
-<p>We substitute it with custom frame ticker here that connects Tweener to a Clutter.TimeLine. Now, Clutter.Timeline itself isn't a whole lot more sophisticated than a simple timeout at a fixed frame rate, but at least it knows how to drop frames. (See HippoAnimationManager for a more sophisticated view of continous time updates; even better is to pay attention to the vertical vblank and sync to that when possible.)</p>
+<p>We substitute it with custom frame ticker here that connects Tweener to a Clutter.TimeLine. Now, Clutter.Timeline itself isn't a whole lot more sophisticated than a simple timeout at a fixed frame rate, but at least it knows how to drop frames. (See HippoAnimationManager for a more sophisticated view of continuous time updates; even better is to pay attention to the vertical vblank and sync to that when possible.)</p>
 </div>
 </div>
 <div class="footer">

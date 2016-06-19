@@ -27,7 +27,7 @@
 <a name="id-1.2.2.2"></a>Overview</h3></div></div></div>
 <p>The documentation of Cinnamon is separated into 4 different parts (5 if you count muffin). What you are currently reading is the tutorials, which includes the general top-level overviews and tutorials you will need for Cinnamon. This is named "Cinnamon Tutorials".</p>
 <p>The second part of the Javascript reference, which describes the Javascript part of Cinnamon. This is named the "Cinnamon Javascript Reference Manual". This is a technical reference for the individual functions and objects available in Cinnamon. Note that this documentation is aimed at both applet/extension developers and Cinnamon developers themselves. So depending on who you are, some of the information might be entirely irrelevant.</p>
-<p>The second part of the documentation is for the C part of Cinnamon, which is simply refered to as the "Cinnamon Reference Manual".</p>
+<p>The second part of the documentation is for the C part of Cinnamon, which is simply referred to as the "Cinnamon Reference Manual".</p>
 <p>The last part is the documentation for Shell toolkit, or St. This is the graphical toolkit used to draw widgets on the screen (similar to Gtk).</p>
 <p>The modules covered by the Javascript documentation are those imported via <code class="code">imports.ui.*</code> and <code class="code">imports.misc.*</code>. The <code class="code">global</code> object is documented in the C part of Cinnamon, as well as things accessed through <code class="code">imports.gi.Cinnamon</code>. Things accessed through <code class="code">imports.gi.St</code> are, unsurprisingly, documented in the St part.</p>
 <p><code class="code">imports.gi.Meta</code> refers to Muffin, while others (eg. <code class="code">imports.gi.Gio</code>) are third-party (usually GNOME) libraries that are documented elsewhere.</p>
@@ -35,7 +35,7 @@
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
 <a name="id-1.2.2.3"></a>Accessing the documentation</h3></div></div></div>
-<p>There are two ways of accessing this documentation, one of which is what you are currently using. The first method is accessing it online, which will be availble at <a class="ulink" href="http://linuxmint.github.io" target="_top">http://linuxmint.github.io</a>.</p>
+<p>There are two ways of accessing this documentation, one of which is what you are currently using. The first method is accessing it online, which will be available at <a class="ulink" href="http://linuxmint.github.io" target="_top">http://linuxmint.github.io</a>.</p>
 <p>The second method is to access it locally. Install the program <code class="code">devhelp</code> and the <code class="code">cinnamon-doc</code> package (might be named differently in different distros or included in the <code class="code">cinnamon</code> package itself). Then run the program <code class="code">devhelp</code> to access all documentations you have installed in your system (not limited to Cinnamon).</p>
 </div>
 <div class="sect2">
@@ -79,7 +79,7 @@
 <p>If you look at the page of <code class="code">StBin</code>, you will see that the functions have very long names like <code class="code">st_bin_get_child</code>. Since we are just pretending to have objects via GObjects, and objects do not genuinely exist in C, the functions do not "belong" to the objects. We simply put the name of the object in front of the function name and trust people will actually use it on the proper object.</p>
 <p>In C, objects are imported as if they were objects, and functions <span class="emphasis"><em>do</em></span> belong to the objects. So if <code class="code">actor</code> is an <code class="code">StBin</code>, we do not do <code class="code">st_bin_get_child(actor)</code>, but simply <code class="code">actor.get_child()</code>.</p>
 <p>Note that the C documentation always tells you that the first argument to the function is the object itself. For example, <code class="code">st_bin_get_child</code> takes in an <code class="code">StBin</code> as the argument. We do not need to supply this.</p>
-<p>Note also that not all functions are available for use in Javascript. If some functions are considered to be too C-like to be used in other languages, it will not be availble. There is generally no simple way to figure out whether the functions are available, but usually they are. If they are not, Cinnamon will complain loudly that the function doesn't exist. So the best way to know is to try it.</p>
+<p>Note also that not all functions are available for use in Javascript. If some functions are considered to be too C-like to be used in other languages, it will not be available. There is generally no simple way to figure out whether the functions are available, but usually they are. If they are not, Cinnamon will complain loudly that the function doesn't exist. So the best way to know is to try it.</p>
 <p>Again, <code class="code">Gio</code> and <code class="code">GLib</code> functions use the <code class="code">g_</code> prefix, eg <code class="code">g_settings_set_int</code> instead of <code class="code">gio_settings_get_int</code>.</p>
 </div>
 <div class="sect3">
