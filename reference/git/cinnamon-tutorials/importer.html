@@ -22,7 +22,7 @@
 <div class="chapter">
 <div class="titlepage"><div><div><h2 class="title">
 <a name="importer"></a>The Importer</h2></div></div></div>
-<p>To access code of other JavaScript files, cjs has got the <code class="code">imports</code> object.</p>
+<p>To access code of other JavaScript files, cjs has the <code class="code">imports</code> object.</p>
 <p>
     In cjs in combination of Cinnamon you can use following statements to import statements:
 
@@ -45,7 +45,7 @@
       All functions, variables (var, let, const) in a JavaScript file can be accessed like this file is an object.
     </p>
 <p>
-      To clearify, an example:
+      To clarify, an example:
       </p>
 <div class="informalexample"><pre class="programlisting">
           //Direct access to file a.js
@@ -78,7 +78,7 @@
     </p>
 <p>
       In every case, you can include cjs core modules.
-      Those provides you useful functions or (less often) bindings to C libraries.
+      Those provide you useful functions or (less often) bindings to C libraries.
     </p>
 <p>
       Examples are:
@@ -98,10 +98,10 @@
 <div class="titlepage"><div><div><h3 class="title">
 <a name="id-1.4.2.5"></a><code class="code">imports.gi.*</code>
 </h3></div></div></div>
-<p>As Cinnamon uses C libraries like Clutter, Muffin and more, there is a little problem: How can be those libraries used in cjs?</p>
+<p>As Cinnamon uses C libraries like Clutter, Muffin and more, there is a little problem: How can those libraries be used in cjs?</p>
 <p>
       For this, there is <a class="ulink" href="https://wiki.gnome.org/Projects/GObjectIntrospection" target="_top">GObject Introspection</a>.
-      For short, it allows you to use C libraries in cjs, Python and other languages.
+      In short, it allows you to use C libraries in cjs, Python and other languages.
     </p>
 <p>
       C libraries are included like this:
@@ -134,7 +134,7 @@
 <div class="titlepage"><div><div><h3 class="title">
 <a name="id-1.4.2.7"></a><code class="code">imports.misc.*</code>
 </h3></div></div></div>
-<p>Those imports under <code class="code">imports.misc.*</code> are belonging to Cinnamon, but aren't tied to it that much like <code class="code">imports.ui.*</code>.</p>
+<p>Those imports under <code class="code">imports.misc.*</code> belong to Cinnamon, but aren't tied to it as much as <code class="code">imports.ui.*</code>.</p>
 <p>
       </p>
 <div class="informalexample"><pre class="programlisting">
@@ -198,7 +198,7 @@
       Remember: replace <code class="code">xlet</code> in <code class="code">imports.xlet</code> to your xlet type.
     </p>
 <p>
-      There is no harm renaming <code class="code">__init__.js</code> to something other (like <code class="code">util.js</code>) and using <code class="code">imports.xlet.util.*</code>.
+      There is no harm renaming <code class="code">__init__.js</code> to something else (like <code class="code">util.js</code>) and using <code class="code">imports.xlet.util.*</code>.
     </p>
 </div>
 </div>

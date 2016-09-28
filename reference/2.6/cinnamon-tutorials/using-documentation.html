@@ -26,8 +26,8 @@
 <div class="titlepage"><div><div><h3 class="title">
 <a name="id-1.2.2.2"></a>Overview</h3></div></div></div>
 <p>The documentation of Cinnamon is separated into 4 different parts (5 if you count muffin). What you are currently reading is the tutorials, which includes the general top-level overviews and tutorials you will need for Cinnamon. This is named "Cinnamon Tutorials".</p>
-<p>The second part of the Javascript reference, which describes the Javascript part of Cinnamon. This is named the "Cinnamon Javascript Reference Manual". This is a technical reference for the individual functions and objects available in Cinnamon. Note that this documentation is aimed at both applet/extension developers and Cinnamon developers themselves. So depending on who you are, some of the information might be entirely irrelevant.</p>
-<p>The second part of the documentation is for the C part of Cinnamon, which is simply referred to as the "Cinnamon Reference Manual".</p>
+<p>The second part is the Javascript reference, which describes the Javascript part of Cinnamon. This is named the "Cinnamon Javascript Reference Manual". This is a technical reference for the individual functions and objects available in Cinnamon. Note that this documentation is aimed at both applet/extension developers and Cinnamon developers themselves. So depending on who you are, some of the information might be entirely irrelevant.</p>
+<p>The third part of the documentation is for the C part of Cinnamon, which is simply referred to as the "Cinnamon Reference Manual".</p>
 <p>The last part is the documentation for Shell toolkit, or St. This is the graphical toolkit used to draw widgets on the screen (similar to Gtk).</p>
 <p>The modules covered by the Javascript documentation are those imported via <code class="code">imports.ui.*</code> and <code class="code">imports.misc.*</code>. The <code class="code">global</code> object is documented in the C part of Cinnamon, as well as things accessed through <code class="code">imports.gi.Cinnamon</code>. Things accessed through <code class="code">imports.gi.St</code> are, unsurprisingly, documented in the St part.</p>
 <p><code class="code">imports.gi.Meta</code> refers to Muffin, while others (eg. <code class="code">imports.gi.Gio</code>) are third-party (usually GNOME) libraries that are documented elsewhere.</p>
@@ -63,13 +63,13 @@
 <div class="titlepage"><div><div><h3 class="title">
 <a name="id-1.2.2.5"></a>C documentation</h3></div></div></div>
 <p>The items described here are common to all C modules imported, not just those relating to Cinnamon.</p>
-<p>Reading the documentation of C modules is tricky, since they are written for C, and we are in Javascript. In particular, C has no concept of objects, while Javascript does. Thus the naming convention of many things are different when used in Cinnamon, and the documentation is not directly applicable. The following sections will describe how to translate C into Javascript.</p>
-<p>Note that most of these apply to Python and other non-C language.</p>
+<p>Reading the documentation of C modules is tricky, since they are written for C, and we are in Javascript. In particular, C has no concept of objects, while Javascript does. Thus the naming conventions of many things are different when used in Cinnamon, and the documentation is not directly applicable. The following sections will describe how to translate C into Javascript.</p>
+<p>Note that most of these apply to Python and other non-C languages.</p>
 <div class="sect3">
 <div class="titlepage"><div><div><h4 class="title">
 <a name="id-1.2.2.5.5"></a>Objects</h4></div></div></div>
 <p>C has no concept of objects, but GObject allows C code to create things that look like objects. For example, <code class="code">St.Bin</code> is something that looks like an object, and acts like an object in Javascript. If you want to look up the documentation of <code class="code">St.Bin</code>, you search for <code class="code">StBin</code> (without the ".") and the documentation will come up.</p>
-<p>The removal of the "." is since, in Javascript, we first import the whole St, and then take the "<code class="code">Bin</code>" object from St. This concept is non-existent in C. In C, it is simply StBin.</p>
+<p>The "." is removed since, in Javascript, we first import the whole St, and then take the "<code class="code">Bin</code>" object from St. This concept is non-existent in C. In C, it is simply StBin.</p>
 <p>A notable exception is with <code class="code">Gio</code> and <code class="code">GLib</code> objects, in which the <code class="code">G</code> prefix is used in C for both while <code class="code">Gio</code> and <code class="code">GLib</code> is used in Javascript. For example, the C object is <code class="code">GSettings</code> while the Javascript object is <code class="code">Gio.Settings</code>.</p>
 <p>Translating object names is the easiest of all.</p>
 </div>
@@ -85,7 +85,7 @@
 <div class="sect3">
 <div class="titlepage"><div><div><h4 class="title">
 <a name="id-1.2.2.5.7"></a>Properties</h4></div></div></div>
-<p>GObjects have properties. These can generally accessed directly. For example, if <code class="code">actor</code> is an <code class="code">StBin</code> and you want to access the <code class="code">x-fill</code> property, you can use <code class="code">actor.x_fill</code>. Note that we translate <code class="code">-</code> to <code class="code">_</code>.</p>
+<p>GObjects have properties. These can generally be accessed directly. For example, if <code class="code">actor</code> is an <code class="code">StBin</code> and you want to access the <code class="code">x-fill</code> property, you can use <code class="code">actor.x_fill</code>. Note that we translate <code class="code">-</code> to <code class="code">_</code>.</p>
 <p>Sometimes, for some absurd reason, the properties cannot be accessed directly. In this case, there is still hope. You can access the property via <code class="code">actor.get_property("x-fill")</code> and <code class="code">actor.set_property("x-fill", false)</code>.</p>
 </div>
 <div class="sect3">
