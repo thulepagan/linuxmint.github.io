@@ -48,7 +48,7 @@
       </li>
 </ul></div>
 <p>
-      Applets go in <code class="code">~/.local/share/cinnamon/applets</code> (or in <code class="code">/usr/share/cinnamon/applets</code> if you want them installed system-wide). So let’s go there and let’s create the files and folders necessary to any Cinnamon applet.
+      Applets go in <code class="code">~/.local/share/cinnamon/applets</code> (or in <code class="code">/usr/share/cinnamon/applets</code> if you want them installed system-wide). So let’s go there and let’s create the files and folders necessary for any Cinnamon applet.
     </p>
 <pre class="screen">
       cd
@@ -180,7 +180,7 @@
 </div>
 
 <p>
-      Now we'll go through the code one by one, starting from the bottom.
+      Now we'll go through the code line by line, starting from the bottom.
     </p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
@@ -198,10 +198,10 @@
 </div>
 
 <p>
-      The <code class="code">main</code> function is the only thing Cinnamon understand. To load an applet, Cinnamon calls the <code class="code">main</code> function in the applet's code, and expects to get an Applet object, which it will add to the panel. So here we instantiate an <code class="code">MyApplet</code> object (whose details are defined above, and returns it.
+      The <code class="code">main</code> function is the only thing Cinnamon understands. To load an applet, Cinnamon calls the <code class="code">main</code> function in the applet's code, and expects to get an Applet object, which it will add to the panel. So here we instantiate a <code class="code">MyApplet</code> object (whose details are defined above), and returns it.
     </p>
 <p>
-      You will notice that there are a lot of parameters floating around. <code class="code">metadata</code> contains, basically the information inside <code class="code">metadata.json</code> plus some more. This is not very helpful in general, but can sometimes provide some useful information.
+      You will notice that there are a lot of parameters floating around. <code class="code">metadata</code> contains, basically, the information inside <code class="code">metadata.json</code> plus some more. This is not very helpful in general, but can sometimes provide some useful information.
     </p>
 <p>
       <code class="code">orientation</code> is whether the panel is at the top or the bottom. The applet can behave differently depending on its position, eg. to make the popup menus show up on the right side.
@@ -213,7 +213,7 @@
       <code class="code">instance_id</code> tells you which instance of the applet you are, since there can be multiple instances of the applet present. While this is just a number assigned to the applet and doesn't have much meaning by itself, it is required to access, say, the individual settings of an applet (which will be described later).
     </p>
 <p>
-      If that sounds like a lot of things to take care of, you should be relieved that the applet API handles all that for you! All you have to do is to pass it to the applet API. Here we are passing these information to the constructor, and the constructor will later pass it to the applet API.
+      If that sounds like a lot of things to take care of, you should be relieved that the applet API handles all that for you! All you have to do is to pass it to the applet API. Here we are passing this information to the constructor, and the constructor will later pass it to the applet API.
     </p>
 <p>
       So what exactly happens when we create the applet? We first look at the first two lines:
@@ -256,7 +256,7 @@
       This is the standard constructor of a Javascript Object. When someone calls it, it calls the <code class="code">_init</code> function of the object, and does stuff. Note that here we called our applet <code class="code">MyApplet</code>. You are free to call it whatever you want (and change the <code class="code">main</code> function accordingly, of course), but there really is no reason to do so!.
     </p>
 <p>
-      Also note that we pass all those <code class="code">orientation</code> etc. information down the chain until it ultimately reaches the applet API.
+      Also note that we pass all the <code class="code">orientation</code> etc. information down the chain until it ultimately reaches the applet API.
     </p>
 <p>
       What we've gone through is mostly boilerplate. Now we get to the meat of the code:
@@ -322,7 +322,7 @@
       line. This copies all the functions found in <code class="code">Applet.IconApplet</code> to our applet, which we are going to use.
     </p>
 <p>
-      Next, in our <code class="code">_init</code> function, we call the <code class="code">_init</code> function of <code class="code">Applet.IconApplet</code>. Here we pass on all those information about <code class="code">orientation</code> etc to this <code class="code">_init</code> function, and this function will help us sort out all the mess required to make the applet display properly.
+      Next, in our <code class="code">_init</code> function, we call the <code class="code">_init</code> function of <code class="code">Applet.IconApplet</code>. Here we pass on all the information about <code class="code">orientation</code> etc. to this <code class="code">_init</code> function, and this function will help us sort out all the mess required to make the applet display properly.
     </p>
 <p>
       However, contrary to popular belief, the applet API is not psychic. It has no idea what your applet wants to do (apart from displaying an icon). You have to first tell it what icon you want, in the line
