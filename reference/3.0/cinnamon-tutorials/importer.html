@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The Importer: Cinnamon Tutorials</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Cinnamon Tutorials">
+<link rel="up" href="cjs.html" title="Part III. Cjs">
+<link rel="prev" href="cjs.html" title="Part III. Cjs">
+<link rel="next" href="extension-system.html" title="Part IV. Extension system">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body><div id="header"><img src="/logo.svg" /><div id="links"><a href="/index.html">Home</a> <a href="/projects.html">Projects</a> <a href="/contributing.html">Contributing</a> <a href="/reference/index.html" class="current">Documentation</a></div></div>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts"></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="cjs.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="cjs.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="extension-system.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="importer"></a>The Importer</h2></div></div></div>
+<p>To access code of other JavaScript files, cjs has got the <code class="code">imports</code> object.</p>
+<p>
+    In cjs in combination of Cinnamon you can use following statements to import statements:
+
+    </p>
+<div class="informalexample"><pre class="programlisting">
+        imports.*
+        imports.gi.*
+        imports.ui.*
+        imports.misc.*
+      </pre></div>
+<p>
+  </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id-1.4.2.4"></a><code class="code">imports.*</code>
+</h3></div></div></div>
+<p>This is the normal form of importing modules.</p>
+<p>
+      You can think of this object like nested objects which properties are the JavaScript files or directories.
+      All functions, variables (var, let, const) in a JavaScript file can be accessed like this file is an object.
+    </p>
+<p>
+      To clearify, an example:
+      </p>
+<div class="informalexample"><pre class="programlisting">
+          //Direct access to file a.js
+          const A = imports.a;
+          //Directories must be also typed in, in order to get file c.js in directory b
+          const C = imports.b.c;
+
+          log(A.foo); //"Property foo"
+          log(A.bar()); //"Method bar"
+          log(C.baz); //"Property baz"
+
+        </pre></div>
+<p>
+      <code class="code">a.js</code>
+      </p>
+<div class="informalexample"><pre class="programlisting">
+          let foo = "Property foo";
+
+          function bar(){
+            return "Method bar";
+          }
+      </pre></div>
+<p>
+      <code class="code">c.js</code> in a directory named b
+      </p>
+<div class="informalexample"><pre class="programlisting">
+          let baz = "Property baz";
+        </pre></div>
+<p>
+    </p>
+<p>
+      In every case, you can include cjs core modules.
+      Those provides you useful functions or (less often) bindings to C libraries.
+    </p>
+<p>
+      Examples are:
+      </p>
+<div class="informalexample"><pre class="programlisting">
+          const Cairo = imports.cairo; //Cairo graphics
+          const Lang = imports.lang; //useful JavaScript functions for extensing the language
+          const Gettext = imports.gettext; //Gettext translation
+          const TweenEquations = imports.tweener.equations; //Tween equations for animations
+        </pre></div>
+<p>
+    </p>
+<p>As you can see, it is common to assign the import to a constant in UpperCamelCase which looks like the imported module.</p>
+<p>To view the source of those cjs modules, you should visit <a class="ulink" href="https://github.com/linuxmint/cjs/tree/master/modules" target="_top">the GitHub page</a>.</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id-1.4.2.5"></a><code class="code">imports.gi.*</code>
+</h3></div></div></div>
+<p>As Cinnamon uses C libraries like Clutter, Muffin and more, there is a little problem: How can be those libraries used in cjs?</p>
+<p>
+      For this, there is <a class="ulink" href="https://wiki.gnome.org/Projects/GObjectIntrospection" target="_top">GObject Introspection</a>.
+      For short, it allows you to use C libraries in cjs, Python and other languages.
+    </p>
+<p>
+      C libraries are included like this:
+      </p>
+<div class="informalexample"><pre class="programlisting">
+          const St = imports.gi.St; //Shell Toolkit, the normal way to display widgets on the Cinnamon screen
+          const Cinnamon = imports.gi.Cinnamon; //Cinnamon C libraries, e.g. AppSystem
+        </pre></div>
+<p>
+    </p>
+<p>Note: Not like normal <code class="code">imports.*</code>, <code class="code">imports.gi.*</code> imports needs to have the first letter after <code class="code">gi.</code> be in upper case.</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id-1.4.2.6"></a><code class="code">imports.ui.*</code>
+</h3></div></div></div>
+<p>Those imports under <code class="code">imports.ui.*</code> are core Cinnamon modules.</p>
+<p>
+      Some important modules:
+      </p>
+<div class="informalexample"><pre class="programlisting">
+          const PopupMenu = imports.ui.popupMenu; //High-level classes for building menus for applets or context menus
+          const Applet = imports.ui.applet; //Base applet classes
+        </pre></div>
+<p>
+    </p>
+<p>The source is in <code class="code">/usr/share/cinnamon/js/ui/</code></p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id-1.4.2.7"></a><code class="code">imports.misc.*</code>
+</h3></div></div></div>
+<p>Those imports under <code class="code">imports.misc.*</code> are belonging to Cinnamon, but aren't tied to it that much like <code class="code">imports.ui.*</code>.</p>
+<p>
+      </p>
+<div class="informalexample"><pre class="programlisting">
+          const Util = imports.misc.util; //useful functions
+          const Interfaces = imports.misc.interfaces; //DBus stuff
+        </pre></div>
+<p>
+    </p>
+<p>The source is in <code class="code">/usr/share/cinnamon/js/misc/</code></p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id-1.4.2.8"></a>Importing xlet modules</h3></div></div></div>
+<p>
+      When you want to split a big xlet code into smaller files, you'll need to import them.
+      A simple way is using <code class="code">imports.xlet</code>, wher <code class="code">xlet</code> is your xlet type
+      (<code class="code">applet</code>, <code class="code">desklet</code>, <code class="code">extension</code>, <code class="code">search_provider</code>)
+      </p>
+<div class="informalexample"><pre class="programlisting">
+          imports.applet.foo // get foo.js in your applet directory
+        </pre></div>
+<p>
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id-1.4.2.9"></a><code class="code">__init__.js</code>
+</h3></div></div></div>
+<p>
+      When writing xlets, it is common that you have some functions or constants that you need in many files.
+      For that, there is <code class="code">__init__.js</code>.
+      It is a normal JavaScript file, but every function or variable can be accessed directly via <code class="code">import.*</code>.
+    </p>
+<p>
+      Examples are often used functions, like a modified <code class="code">_()</code> function for translating your xlet.
+    </p>
+<p>
+      <code class="code">__init__.js</code>
+      </p>
+<div class="informalexample"><pre class="programlisting">
+          const Gettext = imports.gettext;
+
+          const uuid = "xlet@uuid";
+
+          Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale");
+
+          function _(str){
+            return Gettext.dgettext(uuid, str);
+          }
+        </pre></div>
+<p>
+      In your other files:
+      </p>
+<div class="informalexample"><pre class="programlisting">
+          const uuid = imports.xlet.uuid;
+          const _ = imports.xlet._;
+        </pre></div>
+<p>
+    </p>
+<p>
+      Remember: replace <code class="code">xlet</code> in <code class="code">imports.xlet</code> to your xlet type.
+    </p>
+<p>
+      There is no harm renaming <code class="code">__init__.js</code> to something other (like <code class="code">util.js</code>) and using <code class="code">imports.xlet.util.*</code>.
+    </p>
+</div>
+</div>
+<div class="footer">
+<hr>Generated by GTK-Doc V1.25</div>
+</body>
+</html>
